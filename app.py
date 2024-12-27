@@ -10,7 +10,7 @@ st.set_page_config(page_title="Next Word Predictor", page_icon="🎨", layout="c
 # Load the LSTM Model
 @st.cache_resource
 def load_lstm_model():
-    return load_model('nextwordlstm.h5')
+    return load_model('next_word_lstm.h5')
 
 # Load the tokenizer
 @st.cache_resource
@@ -35,6 +35,10 @@ def predict_next_word(model, tokenizer, text, max_sequence_len):
 
 # Streamlit UI
 st.title("🎨 Next Word Prediction with LSTM")
+
+# Add a header image
+st.image("header_image.jpg", use_column_width=True, caption="AI-Powered Word Prediction")
+
 st.markdown(
     """<style> 
     .big-font { font-size:20px; color:#4CAF50; } 
@@ -51,6 +55,9 @@ if st.button("Predict Next Word"):
         max_sequence_len = model.input_shape[1] + 1  # Get max sequence length from model
         next_word = predict_next_word(model, tokenizer, input_text, max_sequence_len)
     st.success(f"Next word: **{next_word}**")
+
+# Add a footer image
+st.image("footer_image.jpg", use_column_width=True, caption="Developed with ❤️ using Streamlit")
 
 # Footer
 st.markdown(
